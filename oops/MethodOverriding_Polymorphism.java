@@ -1,6 +1,7 @@
 /*Polymorphism: is  process of method performed in diferent ways. polymorphism is of 2 types run time and compile time polymorphism.
  * Runtime polymorphism : is method overloading that is done at run time.
  * compile time polymorphism: is method overridding that is done at compile time.
+ * polymorphism is a same object is of different form during compile time and ru time.
  * Method overridding: If a child class providies implementation of method,that is already providied in parent class is called 
  *   method overriding. used for run time polymorphism.
  * ->Rules of method overriding : method in child &parent must have same name& same parameters, they must be IS-A relationship.
