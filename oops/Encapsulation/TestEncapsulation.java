@@ -1,4 +1,5 @@
 /*Encapsulation : is process of wrapping of code and data together as single unit.
+ * Encapsulation is used to hide particular attributes ,so that other modules can access these attributes only by using getters and setters
  * -> we can create a fully Encapsulated class by making all data members of class private and use setters and getter to set and 
  * get data.
  * -> It provides control over data , if we want to set value >100  logic written in setter method.
