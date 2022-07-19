@@ -1,0 +1,957 @@
+Enter password: 2255
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 54
+Server version: 8.0.29 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases
+    -> ^C
+mysql> show databases
+    -> ^C
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| airbus             |
+| information_schema |
+| mysql              |
+| pavandb            |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.11 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| airbus             |
+| information_schema |
+| mysql              |
+| pavandb            |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> drop database airbus;
+Query OK, 0 rows affected (0.39 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| pavandb            |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> drop database pavandb;
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> create database learn
+    -> ^C
+mysql> create database learn;
+Query OK, 1 row affected (0.14 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| learn              |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use learn;
+Database changed
+mysql> create table user(id int primary_key auto_increment, name varchar(20) not null, city varchar(50));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary_key auto_increment, name varchar(20) not null, city varchar(50))' at line 1
+mysql> create table user(id int primary key auto_increment, name varchar(20) not null, city varchar(50));
+Query OK, 0 rows affected (2.49 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_learn |
++-----------------+
+| user            |
++-----------------+
+1 row in set (0.12 sec)
+
+mysql> desc learn;
+ERROR 1146 (42S02): Table 'learn.learn' doesn't exist
+mysql> desc user;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(20) | NO   |     | NULL    |                |
+| city  | varchar(50) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.07 sec)
+
+mysql> drop table user;
+Query OK, 0 rows affected (1.14 sec)
+
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> create table user(id int primary key auto_increment, name varchar(20) not null, city varchar(50));
+Query OK, 0 rows affected (0.99 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_learn |
++-----------------+
+| user            |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> alter table user rename to student;
+Query OK, 0 rows affected (0.46 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_learn |
++-----------------+
+| student         |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> desc student;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(20) | NO   |     | NULL    |                |
+| city  | varchar(50) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student(name,city) values('pavanlikitha','hyderabad');
+Query OK, 1 row affected (0.21 sec)
+
+mysql> desc student;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(20) | NO   |     | NULL    |                |
+| city  | varchar(50) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student;
++----+--------------+-----------+
+| id | name         | city      |
++----+--------------+-----------+
+|  1 | pavanlikitha | hyderabad |
++----+--------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> insert into student(name, city) values('sai','viz');
+Query OK, 1 row affected (0.24 sec)
+
+mysql> select * from student;
++----+--------------+-----------+
+| id | name         | city      |
++----+--------------+-----------+
+|  1 | pavanlikitha | hyderabad |
+|  2 | sai          | viz       |
++----+--------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> truncate student;
+Query OK, 0 rows affected (1.21 sec)
+
+mysql> select * from student;
+Empty set (0.00 sec)
+
+mysql> insert into student(name, city) values('sai','viz');
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into student(name,city) values('pavanlikitha','hyderabad');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from student;
++----+--------------+-----------+
+| id | name         | city      |
++----+--------------+-----------+
+|  1 | sai          | viz       |
+|  2 | pavanlikitha | hyderabad |
++----+--------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> alter table student add age int(4);
+Query OK, 0 rows affected, 1 warning (0.58 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> desc student;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(20) | NO   |     | NULL    |                |
+| city  | varchar(50) | YES  |     | NULL    |                |
+| age   | int         | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+4 rows in set (0.04 sec)
+
+mysql> select * from student;
++----+--------------+-----------+------+
+| id | name         | city      | age  |
++----+--------------+-----------+------+
+|  1 | sai          | viz       | NULL |
+|  2 | pavanlikitha | hyderabad | NULL |
++----+--------------+-----------+------+
+2 rows in set (0.00 sec)
+
+mysql> insert into student(name,city,age) values('pavan','hyd',23);
+Query OK, 1 row affected (0.17 sec)
+
+mysql> select * from student;
++----+--------------+-----------+------+
+| id | name         | city      | age  |
++----+--------------+-----------+------+
+|  1 | sai          | viz       | NULL |
+|  2 | pavanlikitha | hyderabad | NULL |
+|  3 | pavan        | hyd       |   23 |
++----+--------------+-----------+------+
+3 rows in set (0.00 sec)
+
+mysql> update student set age=21 where name='sai';
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++----+--------------+-----------+------+
+| id | name         | city      | age  |
++----+--------------+-----------+------+
+|  1 | sai          | viz       |   21 |
+|  2 | pavanlikitha | hyderabad | NULL |
+|  3 | pavan        | hyd       |   23 |
++----+--------------+-----------+------+
+3 rows in set (0.00 sec)
+
+mysql> update student set city='mal',age =43 where name=pavanlikitha;
+ERROR 1054 (42S22): Unknown column 'pavanlikitha' in 'where clause'
+mysql> update student set city='mal',age =43 where name='pavanlikitha';
+Query OK, 1 row affected (0.18 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++----+--------------+------+------+
+| id | name         | city | age  |
++----+--------------+------+------+
+|  1 | sai          | viz  |   21 |
+|  2 | pavanlikitha | mal  |   43 |
+|  3 | pavan        | hyd  |   23 |
++----+--------------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> delete from student where id =1;
+Query OK, 1 row affected (0.23 sec)
+
+mysql> select * from student;
++----+--------------+------+------+
+| id | name         | city | age  |
++----+--------------+------+------+
+|  2 | pavanlikitha | mal  |   43 |
+|  3 | pavan        | hyd  |   23 |
++----+--------------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> insert into student(name,city,age) values('jacq','skl',34);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into student(name,city,age) values('sruthi','tamil',36);
+Query OK, 1 row affected (0.23 sec)
+
+mysql> select * from student;
++----+--------------+-------+------+
+| id | name         | city  | age  |
++----+--------------+-------+------+
+|  2 | pavanlikitha | mal   |   43 |
+|  3 | pavan        | hyd   |   23 |
+|  4 | jacq         | skl   |   34 |
+|  5 | sruthi       | tamil |   36 |
++----+--------------+-------+------+
+4 rows in set (0.00 sec)
+
+mysql>
+mysql> select name from student where age<30
+    -> ^C
+mysql> select name from student where age<30;
++-------+
+| name  |
++-------+
+| pavan |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select name from student where age<35;
++-------+
+| name  |
++-------+
+| pavan |
+| jacq  |
++-------+
+2 rows in set (0.00 sec)
+
+mysql> select *  from student where age<35;
++----+-------+------+------+
+| id | name  | city | age  |
++----+-------+------+------+
+|  3 | pavan | hyd  |   23 |
+|  4 | jacq  | skl  |   34 |
++----+-------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> select name as "USERNAME",city as "USERCITY" from student;
++--------------+----------+
+| USERNAME     | USERCITY |
++--------------+----------+
+| pavanlikitha | mal      |
+| pavan        | hyd      |
+| jacq         | skl      |
+| sruthi       | tamil    |
++--------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select *  from student where age<35;
++----+-------+------+------+
+| id | name  | city | age  |
++----+-------+------+------+
+|  3 | pavan | hyd  |   23 |
+|  4 | jacq  | skl  |   34 |
++----+-------+------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student;
++----+--------------+-------+------+
+| id | name         | city  | age  |
++----+--------------+-------+------+
+|  2 | pavanlikitha | mal   |   43 |
+|  3 | pavan        | hyd   |   23 |
+|  4 | jacq         | skl   |   34 |
+|  5 | sruthi       | tamil |   36 |
++----+--------------+-------+------+
+4 rows in set (0.00 sec)
+
+mysql> insert into student(name,city,age) values('samantha','tamil',35);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into student(name,city,age) values('nayna','tamil',36);
+Query OK, 1 row affected (0.17 sec)
+
+mysql> select * from student;
++----+--------------+-------+------+
+| id | name         | city  | age  |
++----+--------------+-------+------+
+|  2 | pavanlikitha | mal   |   43 |
+|  3 | pavan        | hyd   |   23 |
+|  4 | jacq         | skl   |   34 |
+|  5 | sruthi       | tamil |   36 |
+|  6 | samantha     | tamil |   35 |
+|  7 | nayna        | tamil |   36 |
++----+--------------+-------+------+
+6 rows in set (0.00 sec)
+
+mysql> select distinct(city,age) from student;
+ERROR 1241 (21000): Operand should contain 1 column(s)
+mysql> select distinct(city) from student;
++-------+
+| city  |
++-------+
+| mal   |
+| hyd   |
+| skl   |
+| tamil |
++-------+
+4 rows in set (0.10 sec)
+
+mysql> select distinct(age) from student;
++------+
+| age  |
++------+
+|   43 |
+|   23 |
+|   34 |
+|   36 |
+|   35 |
++------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student;
++----+--------------+-------+------+
+| id | name         | city  | age  |
++----+--------------+-------+------+
+|  2 | pavanlikitha | mal   |   43 |
+|  3 | pavan        | hyd   |   23 |
+|  4 | jacq         | skl   |   34 |
+|  5 | sruthi       | tamil |   36 |
+|  6 | samantha     | tamil |   35 |
+|  7 | nayna        | tamil |   36 |
++----+--------------+-------+------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student where city='tamil' and age=36;
++----+--------+-------+------+
+| id | name   | city  | age  |
++----+--------+-------+------+
+|  5 | sruthi | tamil |   36 |
+|  7 | nayna  | tamil |   36 |
++----+--------+-------+------+
+2 rows in set (0.00 sec)
+
+mysql> select name from student where city='tamil' or age=36;
++----------+
+| name     |
++----------+
+| sruthi   |
+| samantha |
+| nayna    |
++----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where city='tamil' or age=36;
++----+----------+-------+------+
+| id | name     | city  | age  |
++----+----------+-------+------+
+|  5 | sruthi   | tamil |   36 |
+|  6 | samantha | tamil |   35 |
+|  7 | nayna    | tamil |   36 |
++----+----------+-------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student;
++----+--------------+-------+------+
+| id | name         | city  | age  |
++----+--------------+-------+------+
+|  2 | pavanlikitha | mal   |   43 |
+|  3 | pavan        | hyd   |   23 |
+|  4 | jacq         | skl   |   34 |
+|  5 | sruthi       | tamil |   36 |
+|  6 | samantha     | tamil |   35 |
+|  7 | nayna        | tamil |   36 |
++----+--------------+-------+------+
+6 rows in set (0.00 sec)
+
+mysql> select
+    -> *^C
+mysql> select * from student where 2<id<7;
++----+--------------+-------+------+
+| id | name         | city  | age  |
++----+--------------+-------+------+
+|  2 | pavanlikitha | mal   |   43 |
+|  3 | pavan        | hyd   |   23 |
+|  4 | jacq         | skl   |   34 |
+|  5 | sruthi       | tamil |   36 |
+|  6 | samantha     | tamil |   35 |
+|  7 | nayna        | tamil |   36 |
++----+--------------+-------+------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student where 3<id<6;
++----+--------------+-------+------+
+| id | name         | city  | age  |
++----+--------------+-------+------+
+|  2 | pavanlikitha | mal   |   43 |
+|  3 | pavan        | hyd   |   23 |
+|  4 | jacq         | skl   |   34 |
+|  5 | sruthi       | tamil |   36 |
+|  6 | samantha     | tamil |   35 |
+|  7 | nayna        | tamil |   36 |
++----+--------------+-------+------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student where id>=3 and id<=6;
++----+----------+-------+------+
+| id | name     | city  | age  |
++----+----------+-------+------+
+|  3 | pavan    | hyd   |   23 |
+|  4 | jacq     | skl   |   34 |
+|  5 | sruthi   | tamil |   36 |
+|  6 | samantha | tamil |   35 |
++----+----------+-------+------+
+4 rows in set (0.00 sec)
+
+mysql>
+mysql> select * from student where id between 3 and 6
+    -> ^X^C
+mysql> select * from student where id between 3 and 6 ;
++----+----------+-------+------+
+| id | name     | city  | age  |
++----+----------+-------+------+
+|  3 | pavan    | hyd   |   23 |
+|  4 | jacq     | skl   |   34 |
+|  5 | sruthi   | tamil |   36 |
+|  6 | samantha | tamil |   35 |
++----+----------+-------+------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student where id=3 or id =4 or id =6;
++----+----------+-------+------+
+| id | name     | city  | age  |
++----+----------+-------+------+
+|  3 | pavan    | hyd   |   23 |
+|  4 | jacq     | skl   |   34 |
+|  6 | samantha | tamil |   35 |
++----+----------+-------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where id=3 in(4,5,6);
+Empty set (0.07 sec)
+
+mysql> select * from student where id in(4,5,6);
++----+----------+-------+------+
+| id | name     | city  | age  |
++----+----------+-------+------+
+|  4 | jacq     | skl   |   34 |
+|  5 | sruthi   | tamil |   36 |
+|  6 | samantha | tamil |   35 |
++----+----------+-------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * student  limit 4;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student  limit 4' at line 1
+mysql> select * from student  limit 4;
++----+--------------+-------+------+
+| id | name         | city  | age  |
++----+--------------+-------+------+
+|  2 | pavanlikitha | mal   |   43 |
+|  3 | pavan        | hyd   |   23 |
+|  4 | jacq         | skl   |   34 |
+|  5 | sruthi       | tamil |   36 |
++----+--------------+-------+------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student  limit 5 offset 2;
++----+----------+-------+------+
+| id | name     | city  | age  |
++----+----------+-------+------+
+|  4 | jacq     | skl   |   34 |
+|  5 | sruthi   | tamil |   36 |
+|  6 | samantha | tamil |   35 |
+|  7 | nayna    | tamil |   36 |
++----+----------+-------+------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student  limit 2 offset 2;
++----+--------+-------+------+
+| id | name   | city  | age  |
++----+--------+-------+------+
+|  4 | jacq   | skl   |   34 |
+|  5 | sruthi | tamil |   36 |
++----+--------+-------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where city like 't%';
++----+----------+-------+------+
+| id | name     | city  | age  |
++----+----------+-------+------+
+|  5 | sruthi   | tamil |   36 |
+|  6 | samantha | tamil |   35 |
+|  7 | nayna    | tamil |   36 |
++----+----------+-------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where name  like 's%';
++----+----------+-------+------+
+| id | name     | city  | age  |
++----+----------+-------+------+
+|  5 | sruthi   | tamil |   36 |
+|  6 | samantha | tamil |   35 |
++----+----------+-------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student order by id;
++----+--------------+-------+------+
+| id | name         | city  | age  |
++----+--------------+-------+------+
+|  2 | pavanlikitha | mal   |   43 |
+|  3 | pavan        | hyd   |   23 |
+|  4 | jacq         | skl   |   34 |
+|  5 | sruthi       | tamil |   36 |
+|  6 | samantha     | tamil |   35 |
+|  7 | nayna        | tamil |   36 |
++----+--------------+-------+------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student order by id desc;
++----+--------------+-------+------+
+| id | name         | city  | age  |
++----+--------------+-------+------+
+|  7 | nayna        | tamil |   36 |
+|  6 | samantha     | tamil |   35 |
+|  5 | sruthi       | tamil |   36 |
+|  4 | jacq         | skl   |   34 |
+|  3 | pavan        | hyd   |   23 |
+|  2 | pavanlikitha | mal   |   43 |
++----+--------------+-------+------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student order by name desc;
++----+--------------+-------+------+
+| id | name         | city  | age  |
++----+--------------+-------+------+
+|  5 | sruthi       | tamil |   36 |
+|  6 | samantha     | tamil |   35 |
+|  2 | pavanlikitha | mal   |   43 |
+|  3 | pavan        | hyd   |   23 |
+|  7 | nayna        | tamil |   36 |
+|  4 | jacq         | skl   |   34 |
++----+--------------+-------+------+
+6 rows in set (0.01 sec)
+
+mysql> select * from student order by age desc;
++----+--------------+-------+------+
+| id | name         | city  | age  |
++----+--------------+-------+------+
+|  2 | pavanlikitha | mal   |   43 |
+|  5 | sruthi       | tamil |   36 |
+|  7 | nayna        | tamil |   36 |
+|  6 | samantha     | tamil |   35 |
+|  4 | jacq         | skl   |   34 |
+|  3 | pavan        | hyd   |   23 |
++----+--------------+-------+------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student order by name,age desc;
++----+--------------+-------+------+
+| id | name         | city  | age  |
++----+--------------+-------+------+
+|  4 | jacq         | skl   |   34 |
+|  7 | nayna        | tamil |   36 |
+|  3 | pavan        | hyd   |   23 |
+|  2 | pavanlikitha | mal   |   43 |
+|  6 | samantha     | tamil |   35 |
+|  5 | sruthi       | tamil |   36 |
++----+--------------+-------+------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student order by id desc limit by 3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'by 3' at line 1
+mysql> select * from student order by id desc limit  3;
++----+----------+-------+------+
+| id | name     | city  | age  |
++----+----------+-------+------+
+|  7 | nayna    | tamil |   36 |
+|  6 | samantha | tamil |   35 |
+|  5 | sruthi   | tamil |   36 |
++----+----------+-------+------+
+3 rows in set (0.00 sec)
+
+mysql> update student set name ='rakul preet singh' where id = 7;
+Query OK, 1 row affected (0.98 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student' at line 1
+mysql> select * from student;
++----+-------------------+-------+------+
+| id | name              | city  | age  |
++----+-------------------+-------+------+
+|  2 | pavanlikitha      | mal   |   43 |
+|  3 | pavan             | hyd   |   23 |
+|  4 | jacq              | skl   |   34 |
+|  5 | sruthi            | tamil |   36 |
+|  6 | samantha          | tamil |   35 |
+|  7 | rakul preet singh | tamil |   36 |
++----+-------------------+-------+------+
+6 rows in set (0.00 sec)
+
+mysql> select * from  student where name "_a%";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"_a%"' at line 1
+mysql> select * from  student where name  like "_a%";
++----+-------------------+-------+------+
+| id | name              | city  | age  |
++----+-------------------+-------+------+
+|  2 | pavanlikitha      | mal   |   43 |
+|  3 | pavan             | hyd   |   23 |
+|  4 | jacq              | skl   |   34 |
+|  6 | samantha          | tamil |   35 |
+|  7 | rakul preet singh | tamil |   36 |
++----+-------------------+-------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student where name like "%h_";
++----+--------------+-------+------+
+| id | name         | city  | age  |
++----+--------------+-------+------+
+|  2 | pavanlikitha | mal   |   43 |
+|  5 | sruthi       | tamil |   36 |
+|  6 | samantha     | tamil |   35 |
++----+--------------+-------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student;
++----+-------------------+-------+------+
+| id | name              | city  | age  |
++----+-------------------+-------+------+
+|  2 | pavanlikitha      | mal   |   43 |
+|  3 | pavan             | hyd   |   23 |
+|  4 | jacq              | skl   |   34 |
+|  5 | sruthi            | tamil |   36 |
+|  6 | samantha          | tamil |   35 |
+|  7 | rakul preet singh | tamil |   36 |
++----+-------------------+-------+------+
+6 rows in set (0.00 sec)
+
+mysql> select SUM(age) from student;
++----------+
+| SUM(age) |
++----------+
+|      207 |
++----------+
+1 row in set (0.12 sec)
+
+mysql> select SUM(age) as "TOTAL SALARY" from student;
++--------------+
+| TOTAL SALARY |
++--------------+
+|          207 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select AVG(age) as "AVERAGE" from student;
++---------+
+| AVERAGE |
++---------+
+| 34.5000 |
++---------+
+1 row in set (0.17 sec)
+
+mysql> select COUNT(id) as "Count" from student;
++-------+
+| Count |
++-------+
+|     6 |
++-------+
+1 row in set (0.08 sec)
+
+mysql> select MIN(age) from student;
++----------+
+| MIN(age) |
++----------+
+|       23 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> select name from student where id = (select MIN(age) from student);
+Empty set (0.11 sec)
+
+mysql> select name from student where id = (select MIN(id) from student);
++--------------+
+| name         |
++--------------+
+| pavanlikitha |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student;
++----+-------------------+-------+------+
+| id | name              | city  | age  |
++----+-------------------+-------+------+
+|  2 | pavanlikitha      | mal   |   43 |
+|  3 | pavan             | hyd   |   23 |
+|  4 | jacq              | skl   |   34 |
+|  5 | sruthi            | tamil |   36 |
+|  6 | samantha          | tamil |   35 |
+|  7 | rakul preet singh | tamil |   36 |
++----+-------------------+-------+------+
+6 rows in set (0.00 sec)
+
+mysql> select name from student where age = (select MIN(age) from student);
++-------+
+| name  |
++-------+
+| pavan |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select name from student where id =(select MAX(id) from student);
++-------------------+
+| name              |
++-------------------+
+| rakul preet singh |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_learn |
++-----------------+
+| student         |
++-----------------+
+1 row in set (0.01 sec)
+
+mysql> alter table student rename to Actresses;
+Query OK, 0 rows affected (0.85 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_learn |
++-----------------+
+| actresses       |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> alter table student rename to Actresses;
+ERROR 1146 (42S02): Table 'learn.student' doesn't exist
+mysql> show tables;
++-----------------+
+| Tables_in_learn |
++-----------------+
+| actresses       |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> create table(id int primary key auto_increment, movies varchar(10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(id int primary key auto_increment, movies varchar(10)' at line 1
+mysql> create table(id int primary key auto_increment, movies varchar(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(id int primary key auto_increment, movies varchar(10))' at line 1
+mysql> create table movies(id int primary key auto_increment, movies varchar(10));
+Query OK, 0 rows affected (1.08 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_learn |
++-----------------+
+| actresses       |
+| movies          |
++-----------------+
+2 rows in set (0.00 sec)
+
+mysql> desc actresses;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(20) | NO   |     | NULL    |                |
+| city  | varchar(50) | YES  |     | NULL    |                |
+| age   | int         | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+4 rows in set (0.03 sec)
+
+mysql> desc movies;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int         | NO   | PRI | NULL    | auto_increment |
+| movies | varchar(10) | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> alter table movies add actressesid int, foreign key(actressesid) references actresses(id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key(actressesid) references actresses(id)' at line 1
+mysql> drop table movies;
+Query OK, 0 rows affected (0.53 sec)
+
+mysql> create table movies(id int primary key aouto_increment,movie varchar(10), actressesid int, foreign key(actressesid) references actresses(id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'aouto_increment,movie varchar(10), actressesid int, foreign key(actressesid) ref' at line 1
+mysql> create table movies(id int primary key aouto_increment,movie varchar(10), actressesid int, foreign key(actressesid) reference actresses(id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'aouto_increment,movie varchar(10), actressesid int, foreign key(actressesid) ref' at line 1
+mysql> create table movies(id int primary key auto_increment,movie varchar(10), actressesid int, foreign key(actressesid) reference actresses(id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'reference actresses(id))' at line 1
+mysql> create table movies(id int primary key auto_increment,movie varchar(10), actressesid int, foreign key(actressesid) references actresses(id));
+Query OK, 0 rows affected (1.26 sec)
+
+mysql> desc movies;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| id          | int         | NO   | PRI | NULL    | auto_increment |
+| movie       | varchar(10) | YES  |     | NULL    |                |
+| actressesid | int         | YES  | MUL | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into movies( movies, actressesid) values('salaar', 5);
+ERROR 1054 (42S22): Unknown column 'movies' in 'field list'
+mysql> insert into movies( movie, actressesid) values('salaar', 5);
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into movies(movie, actressesid) values('agent',6);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> select * from movies;
++----+--------+-------------+
+| id | movie  | actressesid |
++----+--------+-------------+
+|  1 | salaar |           5 |
+|  2 | agent  |           6 |
++----+--------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select actresses.name,movies.movie from actresses, movies where actresses.id = movies.actressesid;
++----------+--------+
+| name     | movie  |
++----------+--------+
+| sruthi   | salaar |
+| samantha | agent  |
++----------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select actresses.name,movies.movie from actresses inner join movies on actresses.id = movies.actressesid;
++----------+--------+
+| name     | movie  |
++----------+--------+
+| sruthi   | salaar |
+| samantha | agent  |
++----------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select actresses.name,movies.movie from actresses left join movies on actresses.id = movies.actressesid;
++-------------------+--------+
+| name              | movie  |
++-------------------+--------+
+| pavanlikitha      | NULL   |
+| pavan             | NULL   |
+| jacq              | NULL   |
+| sruthi            | salaar |
+| samantha          | agent  |
+| rakul preet singh | NULL   |
++-------------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select actresses.name,movies.movie from actresses right join movies on actresses.id = movies.actressesid;
++----------+--------+
+| name     | movie  |
++----------+--------+
+| sruthi   | salaar |
+| samantha | agent  |
++----------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select actresses.name,movies.movie from actresses full join movies on actresses.id = movies.actressesid;
+ERROR 1054 (42S22): Unknown column 'actresses.name' in 'field list'
+mysql> select actresses.name,movies.movie from actresses full outer join movies on actresses.id = movies.actressesid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'outer join movies on actresses.id = movies.actressesid' at line 1
+mysql> select actresses.name,movies.movie from actresses fullouter join movies on actresses.id = movies.actressesid;
+ERROR 1054 (42S22): Unknown column 'actresses.name' in 'field list'
+mysql> a
